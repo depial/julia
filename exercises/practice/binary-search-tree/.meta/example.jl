@@ -2,16 +2,17 @@ mutable struct BinarySearchTree
     data
     left
     right
-    BinarySearchTree(node::T) where T<:Real = new(node, nothing, nothing)
+    BinarySearchTree() = new(nothing, nothing, nothing)
+    BinarySearchTree(node::T) where T<:Real = new(node, nothing, nothing) 
 end
 
-function BinarySearchTree(vec::Vector{T}) where T<:Real
-    tree = BinarySearchTree(popfirst!(vec))
-    foreach(node -> push!(tree, node), vec)
+function BinarySearchTree(vector::Vector{T}) where T<:Real
+    tree = BinarySearchTree()
+    foreach(node -> push!(tree, node), vector)
     tree
 end
 
-function Base.in(node, tree::BinarySearchTree)
+function Base.in(node, tree::BinarySearchTree,)
     tree.data == node && return true
     if node ≤ tree.data
         isnothing(tree.left) ? false : in(node, tree.left)
@@ -20,12 +21,19 @@ function Base.in(node, tree::BinarySearchTree)
     end
 end
 
-function Base.push!(tree::BinarySearchTree, node)
-    if node ≤ tree.data
+function Base.push!(tree::BinarySearchTree, node::T) where T<:Real
+    if isnothing(tree.data)
+        tree.data = node
+    elseif node ≤ tree.data
         isnothing(tree.left) ? (tree.left = BinarySearchTree(node)) : push!(tree.left, node)
     else
         isnothing(tree.right) ? (tree.right = BinarySearchTree(node)) : push!(tree.right, node)
     end
+    tree
+end
+
+function Base.append!(tree::BinarySearchTree, vector::Vector{T}) where T<:Real
+    foreach(node -> push!(tree, node), vector)
     tree
 end
 
