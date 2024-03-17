@@ -1,91 +1,29 @@
 #=
-Below is a full testset, which is more complete than the literal translation of the specs in canonical-data.json which
-was used for the initial testset in runtests.jl. 
-The first two test groups below (instantiation and searching) are beyond the specs in canonical-data.json, 
-so they don't have UUIDs, but those that follow (insertion and sorting) do follow the specs (albeit more liberally) and have UUIDs
+Below is a basic version of the testset from the specs in canonical-data.json which doesn't explicitly test insertion 
+or membership (only instatiation and sorting are explicitly tested), and it doesn't go beyond what is listed in tests.toml
+
+The testset currently in runtests.jl is more in line with the problem description and so is recommended to be used. It also
+encorages an implementation with instantiation which is closer to other Julia collections. The two testsets
+have the same core (found in tests.toml), but the extended version tests further functionality.
 
 Below the tests, there is sample starter code for the slug, if desired, and there are a few extra methods 
-that could be added to the example if further testing is done. Finally, there is an example implementation with 
-an immutable struct which passes the limited tests in the literal interpretation of the specs in canonical.json. 
-However, it would not pass the majority of the tests below.
+that could be added to the example if further functionality testing is done. Finally, there is an example implementation with 
+an immutable struct which passes the basic tests found below.
 =#
 
-# Further instantiation tests to encourage an implementation closer to other Julia collections
 
-@testset "instantiation with different inputs" begin
-    @testset "instantiation without input" begin
-        tree = BinarySearchTree()
-        @test isa(tree, BinarySearchTree)
-    end
+# Basic testset
 
-    @testset "instantiation with a single real number" begin
-        tree = BinarySearchTree(4)
-        @test isa(tree, BinarySearchTree)
-        @test tree.data == 4
-            @test isnothing(tree.left)
-            @test isnothing(tree.right)
-    end
-
-    @testset "instantiation with vector containing a single real number" begin
-        tree = BinarySearchTree([4])
-        @test isa(tree, BinarySearchTree)
-        @test tree.data == 4
-            @test isnothing(tree.left)
-            @test isnothing(tree.right)
-    end
-
-    @testset "instantiation with vector containing multiple real numbers" begin
-        tree = BinarySearchTree([4, 3, 5])
-        @test isa(tree, BinarySearchTree)
-        @test tree.data == 4
-            @test tree.left.data == 3
-                @test isnothing(tree.left.left)
-                @test isnothing(tree.left.right)
-            @test tree.right.data == 5
-                @test isnothing(tree.right.left)
-                @test isnothing(tree.right.right)
-    end
+@testset "data is retained" begin
+    tree = BinarySearchTree([4])
+    @test tree.data == 4
+        @test isnothing(tree.left)
+        @test isnothing(tree.right)
 end
-
-# Tests for searching
-
-@testset "searching" begin
-    @testset "Single element" begin
-        tree = BinarySearchTree([4])
-        @test 4 ∈ tree
-        @test 5 ∉ tree
-    end
-
-    @testset "two elements" begin
-        tree = BinarySearchTree([4, 2])
-        @test 4 ∈ tree
-        @test 2 ∈ tree
-
-        tree = BinarySearchTree([4, 5])
-        @test 4 ∈ tree
-        @test 5 ∈ tree
-    end
-
-    @testset "complex tree" begin
-        tree = BinarySearchTree([4, 2, 6, 1, 3, 5, 7])
-        @test 4 ∈ tree
-        @test 2 ∈ tree
-        @test 6 ∈ tree
-        @test 1 ∈ tree
-        @test 3 ∈ tree
-        @test 5 ∈ tree
-        @test 7 ∈ tree
-    end
-end
-
-# Alternate testset to the one in runtests.jl which explicitly tests insertion instead of more general instantiation
-# These can replace those in runtests.jl (especially if used with instantiation tests above) or supplement them
-# If used to supplement, the test descriptions should probably be changed on one of the two sets
 
 @testset "insert data at proper node" begin
     @testset "smaller number at left node" begin
-        tree = BinarySearchTree([4])
-        push!(tree, 2)
+        tree = BinarySearchTree([4, 2])
         @test tree.data == 4
             @test tree.left.data == 2
                 @test isnothing(tree.left.left)
@@ -94,8 +32,7 @@ end
     end
 
     @testset "same number at left node" begin
-        tree = BinarySearchTree([4])
-        push!(tree, 4)
+        tree = BinarySearchTree([4, 4])
         @test tree.data == 4
             @test tree.left.data == 4
                 @test isnothing(tree.left.left)
@@ -104,8 +41,7 @@ end
     end
     
     @testset "greater number at right node" begin
-        tree = BinarySearchTree([4])
-        push!(tree, 5)
+        tree = BinarySearchTree([4, 5])
         @test tree.data == 4
             @test isnothing(tree.left)
             @test tree.right.data == 5
@@ -115,8 +51,7 @@ end
 end
 
 @testset "can create complex tree" begin
-    tree = BinarySearchTree([4])
-    foreach(node -> push!(tree, node), [2, 6, 1, 3, 5, 7])
+    tree = BinarySearchTree([4, 2, 6, 1, 3, 5, 7])
     @test tree.data == 4
         @test tree.left.data == 2
             @test tree.left.left.data == 1
@@ -163,7 +98,8 @@ end
 end
 
 
-# If inserstion is tested, the slug could take starter code since struct can only be mutable, but this in not necessary
+# As long as inserstion is tested, the slug could take starter code since struct can only be mutable, 
+# but inclusion is not necessary and the slug can be left 'blank'
 
 mutable struct BinarySearchTree
     data
