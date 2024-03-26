@@ -1,7 +1,6 @@
 using Test
 
-#include("perfect-numbers.jl")
-include(".meta/example.jl")
+include("perfect-numbers.jl")
 
 @testset "Perfect numbers" begin
 
