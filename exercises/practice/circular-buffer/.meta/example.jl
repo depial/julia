@@ -2,6 +2,7 @@
 # tasks. The lengthier CircularBuffer afterward completes the bonus tasks and is optimized
 # for performance.
 
+
 """
     CircularDeque{T}(n)
 
@@ -41,8 +42,13 @@ function Base.popfirst!(cd::CircularDeque)
 end
 
 
+
+
+
+
 using Base: @propagate_inbounds
 using Printf
+
 
 """
     CircularBuffer{T}(n) <: AbstractVector{T}
@@ -170,5 +176,6 @@ end
     cb.lastindex = (i == 1 ? capacity(cb) : i - 1)
     return out
 end
+
 
 enable_bonus_tests = true
