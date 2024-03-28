@@ -23,7 +23,7 @@ end
 Base.length(cd::CircularDeque) = cd.length
 Base.isempty(cd::CircularDeque) = length(cd) == 0
 capacity(cd::CircularDeque) = length(cd.data)
-isfull(cd::CircularDeque) = length(cd) == capacity(cd)
+Base.isfull(cd::CircularDeque) = length(cd) == capacity(cd)
 
 Base.empty!(cd::CircularDeque) = (cd.length = 0; cd)
 
@@ -91,7 +91,7 @@ capacity(cb::CircularBuffer) = length(cb.data)
 
 Determine whether `cb` is full.
 """
-isfull(cb::CircularBuffer) = length(cb) == capacity(cb)
+Base.isfull(cb::CircularBuffer) = length(cb) == capacity(cb)
 
 """
     _dataindex(cb::CircularBuffer, i::Integer) -> Int
