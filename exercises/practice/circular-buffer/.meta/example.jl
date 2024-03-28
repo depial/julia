@@ -2,7 +2,6 @@
 # tasks. The lengthier CircularBuffer afterward completes the bonus tasks and is optimized
 # for performance.
 
-module CircularDeques
 
 """
     CircularDeque{T}(n)
@@ -23,7 +22,7 @@ end
 Base.length(cd::CircularDeque) = cd.length
 Base.isempty(cd::CircularDeque) = length(cd) == 0
 capacity(cd::CircularDeque) = length(cd.data)
-Base.isfull(cd::CircularDeque) = length(cd) == capacity(cd)
+isfull(cd::CircularDeque) = length(cd) == capacity(cd)
 
 Base.empty!(cd::CircularDeque) = (cd.length = 0; cd)
 
@@ -42,17 +41,14 @@ function Base.popfirst!(cd::CircularDeque)
     return cd.data[i]
 end
 
-end  # module CircularDeques
-
-using .CircularDeques
 
 
-module CircularBuffers
+
+
 
 using Base: @propagate_inbounds
 using Printf
 
-export CircularBuffer, capacity, isfull
 
 """
     CircularBuffer{T}(n) <: AbstractVector{T}
@@ -91,7 +87,7 @@ capacity(cb::CircularBuffer) = length(cb.data)
 
 Determine whether `cb` is full.
 """
-Base.isfull(cb::CircularBuffer) = length(cb) == capacity(cb)
+isfull(cb::CircularBuffer) = length(cb) == capacity(cb)
 
 """
     _dataindex(cb::CircularBuffer, i::Integer) -> Int
@@ -181,8 +177,5 @@ end
     return out
 end
 
-end  # module CircularBuffers
-
-using .CircularBuffers
 
 enable_bonus_tests = true
