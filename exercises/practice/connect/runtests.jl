@@ -1,7 +1,6 @@
 using Test
 
-#include("connect.jl")
-include(".meta/example.jl")
+include("connect.jl")
 
 @testset "an empty board has no winner" begin
     board = [
@@ -14,7 +13,7 @@ include(".meta/example.jl")
     @test connect(board) == ""
 end
 
-@testset "an empty board with one space has no winner" begin
+@testset "an empty 1x1 board has no winner" begin
     board = [
         "."
     ]

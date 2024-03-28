@@ -2,9 +2,9 @@
 The approach below is essentially an implementation of bfs/floodfill.
  - connector does the bfs, using the six possible steps and tracking which have been seen, returns true/false
    depending on if there is a path is found connecting two edges of the board.
- - wins finds starting points for connector, and returns true if the provided side (X or O) wins.
- - connect processes the board to separate points into coordinates for wins to filter through. The coordinates 
-   have been transposed for "O", so that wins and connector can work with "X" or "O" equally.
+ - wins finds starting points for connector, and returns true if the provided points results in a win.
+ - connect processes the board to separate points into coordinates for wins to filter through and then returns the winner,
+   if there is one. The coordinates have been transposed for O, so that wins and connector can work with X or O equally.
 =#
 function connector(unseen, points, dim, nextpoints=Set())
     for point in points, step in ((1,0),(-1,0),(0,1),(0,-1),(1,-1),(-1,1))
