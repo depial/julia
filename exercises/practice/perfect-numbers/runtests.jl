@@ -15,7 +15,7 @@ include("perfect-numbers.jl")
     @testset "Large perfect number is classified correctly" begin
         @test isperfect(33550336)
     end
-
+    
     @testset "Correctly handles non-perfect numbers" begin
         @test !isperfect(12)
         @test !isperfect(4)
