@@ -958,7 +958,10 @@
         "uuid": "6941653b-c004-48ed-8008-0ae8c9abc8ad",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1
+        "difficulty": 3,
+        "topics": [
+          "matrices"
+        ]
       }
     ]
   },
