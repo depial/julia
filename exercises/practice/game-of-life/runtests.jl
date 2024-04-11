@@ -1,7 +1,6 @@
 using Test
 
-#include("game-of-life.jl")
-include(".meta/example.jl")
+include("game-of-life.jl")
 
 @testset "empty matrix" begin
     matrix = reshape([], 0,2)
