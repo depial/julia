@@ -1,9 +1,13 @@
 using Test
 
-include("game-of-life.jl")
+#include("game-of-life.jl")
+include(".meta/example.jl")
 
 @testset "empty matrix" begin
-    @test gameoflife([;;]) == [;;]
+    matrix = reshape([], 0,2)
+    
+    expected = reshape([], 0,2)
+    @test gameoflife(matrix) == expected
 end
 
 @testset "live cells with zero live neighbors die" begin
