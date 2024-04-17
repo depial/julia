@@ -7,5 +7,5 @@ function wordy(problem)
     optuples = zip(("plus","minus","divided by","multiplied by","What is ","?"), ("+","-","/","*","",""))
     foreach(op -> problem = replace(problem, first(op) => last(op)), optuples)
     answer = readeval(problem)
-    isnothing(answer) ? throw(ArgumentError(problem)) : eval(Meta.parse(answer.match))
+    isnothing(answer) ? throw(ArgumentError(problem)) : Meta.parse(answer.match)
 end
