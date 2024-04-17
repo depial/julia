@@ -1,6 +1,6 @@
 function readeval(eq)
     m = match(r"-?\d+\.?\d* [-+*/] -?\d+\.?\d*", eq)
-    isnothing(m) ? match(r"^-?\d+\.?\d*$", eq) : readeval(replace(eq, m.match => eval(Meta.parse(m.match))))
+    isnothing(m) ? match(r"^-?\d+\.?\d*$", eq) : readeval(replace(eq, m.match => Base.eval(Meta.parse(m.match))))
 end
 
 function wordy(problem)
