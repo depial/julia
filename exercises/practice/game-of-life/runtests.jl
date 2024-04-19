@@ -2,7 +2,7 @@ using Test
 
 include("game-of-life.jl")
 
-@testset verbose = true "" begin
+@testset verbose = true "tests" begin
     @testset "empty matrix" begin
         matrix = reshape([], 0,2)
         

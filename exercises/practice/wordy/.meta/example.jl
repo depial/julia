@@ -1,11 +1,14 @@
-function readeval(eq)
-    m = match(r"-?\d+\.?\d* [-+*/] -?\d+\.?\d*", eq)
-    isnothing(m) ? match(r"^-?\d+\.?\d*$", eq) : readeval(replace(eq, m.match => Base.eval(Meta.parse(m.match))))
+MATHEXPRESSION = r"-?\d+\.?\d* [-+*/] -?\d+\.?\d*"  #Regex which, for x,y ∈ R and op ∈ {+,-,/,*}, matches: "x op y" 
+NUMBER = r"^-?\d+\.?\d*$"                           #Regex which matches a string consisting solely of a single n ∈ R
+ENG2MATH = zip(("plus","minus","divided by","multiplied by","What is ","?"), ("+","-","/","*","",""))
+
+function evalwordy(eq)
+    expr = match(MATHEXPRESSION, eq)
+    isnothing(expr) ? match(NUMBER, eq) : evalwordy(replace(eq, expr.match => (Base.eval ∘ Meta.parse)(expr.match)))
 end
 
 function wordy(problem)
-    optuples = zip(("plus","minus","divided by","multiplied by","What is ","?"), ("+","-","/","*","",""))
-    foreach(op -> problem = replace(problem, first(op) => last(op)), optuples)
-    answer = readeval(problem)
+    foreach(op -> problem = replace(problem, first(op) => last(op)), ENG2MATH)
+    answer = evalwordy(problem)
     isnothing(answer) ? throw(ArgumentError(problem)) : Meta.parse(answer.match)
 end
