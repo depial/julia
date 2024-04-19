@@ -4,7 +4,7 @@ ENG2MATH = zip(("plus","minus","divided by","multiplied by","What is ","?"), ("+
 
 function evalwordy(eq)
     expr = match(MATHEXPRESSION, eq)
-    isnothing(expr) ? match(NUMBER, eq) : evalwordy(replace(eq, expr.match => (Base.eval ∘ Meta.parse)(expr.match)))
+    isnothing(expr) ? match(NUMBER, eq) : evalwordy(replace(eq, expr.match => (Base.eval ∘ Meta.parse)(expr.match), count=1))
 end
 
 function wordy(problem)
