@@ -969,7 +969,15 @@
         "uuid": "49a1349d-30fd-443c-951c-c94628e1d3c1",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 4 
+        "difficulty": 4
+      },
+      {
+        "slug": "matrix",
+        "name": "Matrix",
+        "uuid": "d653f06e-aec6-4680-92f4-799e542bdc22",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 1
       }
     ]
   },
