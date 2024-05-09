@@ -1,7 +1,6 @@
 using Test
 
-#include("palindrome-products.jl")
-include(".meta/example.jl")
+include("palindrome-products.jl")
 
 @testset verbose = true "tests" begin
     @testset "find the smallest palindrome from single digit factors" begin
