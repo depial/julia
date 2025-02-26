@@ -57,6 +57,13 @@
           "basics"
         ],
         "status": "wip"
+      },
+      {
+        "slug": "high-school-sweetheart",
+        "name": "high-school-sweetheart",
+        "uuid": "df1ff192-e8d7-4124-862d-1b99979aa5b5",
+        "concepts": [],
+        "prerequisites": []
       }
     ],
     "practice": [
