@@ -63,7 +63,8 @@
         "name": "high-school-sweetheart",
         "uuid": "df1ff192-e8d7-4124-862d-1b99979aa5b5",
         "concepts": ["function-composition"],
-        "prerequisites": ["strings"]
+        "prerequisites": [],
+        "status": "wip"
       }
     ],
     "practice": [
