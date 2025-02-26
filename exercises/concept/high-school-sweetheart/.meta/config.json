@@ -1,5 +1,6 @@
 {
-  "authors": [],
+  "authors": ["depial"],
+  "contributors": ["colinleach"],
   "files": {
     "solution": [
       "high-school-sweetheart.jl"
@@ -11,5 +12,7 @@
       ".meta/exemplar.jl"
     ]
   },
-  "blurb": ""
+  "forked_from": ["elixir/high-school-sweetheart"],
+  "icon": "high-school-sweethearts",
+  "blurb": "Learn about strings by helping high school sweethearts profess their love on social media via unicode art."
 }
