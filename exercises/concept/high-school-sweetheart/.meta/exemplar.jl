@@ -1,15 +1,11 @@
 function cleanupname(name)
-    hyphensreplaced = replace(name, "-" => " ")
-    cleaned = strip(hyphensreplaced)
-    cleaned
+    strip(replace(name, "-" => " "))
 end
 
 firstletter = string ∘ first ∘ cleanupname
 
 function initial(name)
-    getfirstletter = firstletter(name)
-    upper = uppercase(getfirstletter)
-    join([upper, "."])
+    name |> firstletter |> uppercase |> init-> *(init, ".")
 end
 
 function couple(name1, name2)
