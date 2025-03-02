@@ -12,7 +12,9 @@
       ".meta/exemplar.jl"
     ]
   },
-  "forked_from": ["elixir/high-school-sweetheart"],
+  "forked_from": [
+    "elixir/high-school-sweetheart"
+  ],
   "icon": "high-school-sweethearts",
   "blurb": "Learn about strings by helping high school sweethearts profess their love on social media via unicode art."
 }
